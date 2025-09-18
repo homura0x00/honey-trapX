@@ -12,4 +12,7 @@ import BasicLayout from './layouts/BasicLayout.vue';
 </script>
 
 <style scoped> 
+#app {
+  height: 100vh;
+}
 </style>

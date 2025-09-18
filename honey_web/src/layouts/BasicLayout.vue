@@ -9,7 +9,7 @@
         @menu-item-click="onClickMenuItem"
       >
         <a-menu-item key="0_1" disabled>
-          <IconHome></IconHome>
+          <IconHome />
           Menu 1
         </a-menu-item>
         <a-menu-item key="0_2">
@@ -38,23 +38,22 @@
         <IconCaretLeft v-else></IconCaretLeft>
       </template>
     </a-layout-sider>
-    <a-layout>
-      <a-layout-header style="padding-left: 20px"> Header </a-layout-header>
-      <a-layout style="padding: 0 24px">
+    <a-layout class="contrainer">
+      <a-layout-header style="padding-left: 20px">
         <a-breadcrumb :style="{ margin: '16px 0' }">
           <a-breadcrumb-item>Home</a-breadcrumb-item>
           <a-breadcrumb-item>List</a-breadcrumb-item>
           <a-breadcrumb-item>App</a-breadcrumb-item>
         </a-breadcrumb>
+      </a-layout-header>
+      <a-layout style="padding: 12px 18px">
         <a-layout-content>Content</a-layout-content>
-        <a-layout-footer>Footer</a-layout-footer>
       </a-layout>
     </a-layout>
   </a-layout>
 </template>
 
-<script>
-import { defineComponent } from "vue";
+<script setup lang="ts">
 import { Message } from "@arco-design/web-vue";
 import {
   IconCaretRight,
@@ -63,26 +62,23 @@ import {
   IconCalendar,
 } from "@arco-design/web-vue/es/icon";
 
-export default defineComponent({
-  components: {
-    IconCaretRight,
-    IconCaretLeft,
-    IconHome,
-    IconCalendar,
-  },
-  methods: {
-    onClickMenuItem(key) {
-      Message.info({ content: `You select ${key}`, showIcon: true });
-    },
-  },
-});
+const onClickMenuItem = (key: any) => {
+  Message.info({ content: `You select ${key}`, showIcon: true });
+};
+
+const menuList = [
+  {title: 'dashboard', icon: IconHome, href: '/'},
+  {title: 'home', icon: IconHome, href: '/'},
+  {title: 'home', icon: IconHome, href: '/'},
+  {title: 'home', icon: IconHome, href: '/'},
+]
 </script>
 
-<style>
+<style scoped>
 .layout-demo {
-  height: 500px;
-  background: var(--color-fill-2);
-  /* border: 1px solid var(--color-border); */
+  height: 100%;
+  background: var(--color-neutral-2);
+  border: 1px solid var(--color-border);
 }
 .layout-demo :deep(.arco-layout-sider) .logo {
   height: 32px;
@@ -97,20 +93,12 @@ export default defineComponent({
   line-height: 64px;
   background: var(--color-bg-3);
 }
-.layout-demo :deep(.arco-layout-footer) {
-  height: 48px;
-  color: var(--color-text-2);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 48px;
-}
 .layout-demo :deep(.arco-layout-content) {
   color: var(--color-text-2);
   font-weight: 400;
   font-size: 14px;
   background: var(--color-bg-3);
 }
-.layout-demo :deep(.arco-layout-footer),
 .layout-demo :deep(.arco-layout-content) {
   display: flex;
   flex-direction: column;
