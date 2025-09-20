@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import ArcoVue from '@arco-design/web-vue';
+import '@/assets/base.css'
 
 import App from './App.vue'
 import router from './router'

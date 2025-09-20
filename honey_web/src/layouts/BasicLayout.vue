@@ -1,6 +1,6 @@
 <template>
   <a-layout class="layout-demo">
-    <a-layout-sider collapsible breakpoint="xl">
+    <a-layout-sider collapsible breakpoint="xl" style="margin: 10px; border-radius: 5px;">
       <div class="logo" />
       <a-menu
         :default-open-keys="['1']"
@@ -8,29 +8,15 @@
         :style="{ width: '100%' }"
         @menu-item-click="onClickMenuItem"
       >
-        <a-menu-item key="0_1" disabled>
-          <IconHome />
-          Menu 1
-        </a-menu-item>
-        <a-menu-item key="0_2">
-          <IconCalendar></IconCalendar>
-          Menu 2
-        </a-menu-item>
-        <a-menu-item key="0_3">
-          <IconCalendar></IconCalendar>
-          Menu 3
-        </a-menu-item>
-        <a-sub-menu key="1">
-          <template #title>
-            <IconCalendar></IconCalendar> Navigation 1
+      <template v-for="menu in menuList">
+        <a-menu-item>
+          <template #icon>
+            <component :is="menu.icon as Component">
+            </component>
           </template>
-          <a-menu-item key="1_1">Menu 1</a-menu-item>
-          <a-menu-item key="1_2">Menu 2</a-menu-item>
-          <a-sub-menu key="2" title="Navigation 2">
-            <a-menu-item key="2_1">Menu 1</a-menu-item>
-            <a-menu-item key="2_2">Menu 2</a-menu-item>
-          </a-sub-menu>
-        </a-sub-menu>
+          {{ menu.title }}
+        </a-menu-item>
+      </template>
       </a-menu>
       <!-- trigger -->
       <template #trigger="{ collapsed }">
@@ -39,15 +25,20 @@
       </template>
     </a-layout-sider>
     <a-layout class="contrainer">
-      <a-layout-header style="padding-left: 20px">
-        <a-breadcrumb :style="{ margin: '16px 0' }">
-          <a-breadcrumb-item>Home</a-breadcrumb-item>
+      <a-layout-header>
+        <a-breadcrumb :style="{ margin: '16px 0'}">
+          <a-breadcrumb-item>
+            <House :size="15" />
+          </a-breadcrumb-item>
           <a-breadcrumb-item>List</a-breadcrumb-item>
           <a-breadcrumb-item>App</a-breadcrumb-item>
         </a-breadcrumb>
+        <a-button type="text" style="color: var(--color-text-2);">Text</a-button>
       </a-layout-header>
-      <a-layout style="padding: 12px 18px">
-        <a-layout-content>Content</a-layout-content>
+      <a-layout style="margin: 10px; overflow: auto;">
+        <a-layout-content style="background: inherit;">
+          <RouterView />
+        </a-layout-content>
       </a-layout>
     </a-layout>
   </a-layout>
@@ -58,26 +49,28 @@ import { Message } from "@arco-design/web-vue";
 import {
   IconCaretRight,
   IconCaretLeft,
-  IconHome,
-  IconCalendar,
 } from "@arco-design/web-vue/es/icon";
+import { House, CloudCog, GlobeLock, MonitorCog, ShieldAlert, Workflow } from "lucide-vue-next";
+import type { Component } from "vue";
 
 const onClickMenuItem = (key: any) => {
   Message.info({ content: `You select ${key}`, showIcon: true });
 };
 
 const menuList = [
-  {title: 'dashboard', icon: IconHome, href: '/'},
-  {title: 'home', icon: IconHome, href: '/'},
-  {title: 'home', icon: IconHome, href: '/'},
-  {title: 'home', icon: IconHome, href: '/'},
+  {title: 'Home', icon: House, href: '/'},
+  {title: 'Alert', icon: ShieldAlert, href: '/alert'},
+  {title: 'Node', icon: Workflow, href: '/node'},
+  {title: 'Network', icon: CloudCog, href: '/net'},
+  {title: 'Virtual', icon: GlobeLock, href: '/virtual'},
+  {title: 'System', icon: MonitorCog, href: '/sys'},
 ]
 </script>
 
 <style scoped>
 .layout-demo {
-  height: 100%;
-  background: var(--color-neutral-2);
+  height: calc(100% - 2px);
+  background: var(--color-bg-1);
   border: 1px solid var(--color-border);
 }
 .layout-demo :deep(.arco-layout-sider) .logo {
@@ -89,9 +82,15 @@ const menuList = [
   background: var(--color-fill-2);
 }
 .layout-demo :deep(.arco-layout-header) {
-  height: 64px;
+  height: 44px;
   line-height: 64px;
-  background: var(--color-bg-3);
+  margin: 10px;
+  padding: 0 10;
+  border-radius: 5px;
+  background: var(--color-bg-2);
+  display: flex;
+  align-items: center;
+  place-content: space-between;
 }
 .layout-demo :deep(.arco-layout-content) {
   color: var(--color-text-2);
@@ -102,10 +101,10 @@ const menuList = [
 .layout-demo :deep(.arco-layout-content) {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   color: var(--color-white);
   font-size: 16px;
   font-stretch: condensed;
-  text-align: center;
+  /* text-align: center; */
 }
 </style>
