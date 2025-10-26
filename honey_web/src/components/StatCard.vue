@@ -4,7 +4,6 @@
     :style="{
       width: '180px',
       height: 'auto',
-      marginBottom: '20px',
       borderRadius: '15px',
     }"
   >
@@ -30,7 +29,7 @@
         :style="{
           display: 'flex',
           flexDirection: 'column',
-          textAlign: 'center',
+          textAlign: 'end',
         }"
       >
         <a-typography-text :style="{fontSize: '1.2rem'}"><strong>{{ props.nums }}</strong></a-typography-text>
