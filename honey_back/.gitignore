@@ -1,1 +1,7 @@
-/out
+.gocache/
+.DS_Store
+data/
+*.log
+
+spec/
+docs/

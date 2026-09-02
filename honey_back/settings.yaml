@@ -1,0 +1,34 @@
+server:
+  port: 3000
+  mode: debug
+  frontendURL: "http://localhost:5173"
+  timeout: 30
+
+mysql:
+  host: 127.0.0.1   # 不另外设置时，默认为127.0.0.1
+  port: 3306
+  config: charset=utf8mb4&parseTime=True&loc=Local
+  dbname: honey_db
+  user: root
+  password: "12345678"
+  logLevel: error
+
+redis:
+  ip: 127.0.0.1
+  port: 6379
+  password: "12345678"
+  poolSize: 100
+
+session:
+  cookieName: "honey_session"
+  redisPrefix: "session:"
+  expireHours: 24
+
+admin:
+  account: "admin"
+  password: "admin123456"
+  userName: "管理员"
+
+log:
+  level: info
+  output: both
