@@ -1,6 +1,6 @@
 module honey_back
 
-go 1.25.0
+go 1.27.3
 
 require (
 	github.com/gin-gonic/gin v1.11.0

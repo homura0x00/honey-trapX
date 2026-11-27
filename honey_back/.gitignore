@@ -5,3 +5,5 @@ data/
 
 spec/
 docs/
+
+settings-prod.yaml
